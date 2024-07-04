@@ -26,11 +26,9 @@ This is a simple note-taking application built with Node.js, Express, and MongoD
    ```sh
     npm install
 4. Ensure MongoDB is running on your local machine
-   ```sh
 5. Start the server:
    ```sh
    node server.js
-
 
 
 
