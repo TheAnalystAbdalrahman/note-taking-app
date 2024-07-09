@@ -17,11 +17,16 @@ function updateNotesTable(noteId, noteTitle) {
             cell1.innerHTML = note["title"];
             cell2.innerHTML = note["content"];
             cell3.innerHTML = note["updatedDate"];
-            cell4.innerHTML = `<a onclick="openEditModal('${note["_id"]}')" href="#"><img src="images/edit.png" style="width: 22px;"></a>
-                               <a onclick="confirmDeleteNote('${note["_id"]}')" href="#"><img src="images/delete.png" style="width: 22px;"></a>`
-        })
+            
+            // Using Bootstrap Icons for edit and delete actions
+            var editIcon = '<i class="bi bi-pencil-square text-success" style="font-size: 22px;"></i>';
+            var deleteIcon = '<i class="bi bi-trash text-danger" style="font-size: 22px;"></i>';
+            
+            cell4.innerHTML = `<a onclick="openEditModal('${note["_id"]}')" href="#">${editIcon}</a>
+                               <a onclick="confirmDeleteNote('${note["_id"]}')" href="#">${deleteIcon}</a>`;
+        });
     }).then(() => {
-        if(noteId) {
+        if (noteId) {
             var row = document.getElementById(noteId);
             row.setAttribute("style", "animation: new-row 5s;");
         }
@@ -35,9 +40,9 @@ function searchNotes() {
 
 function confirmDeleteNote(noteId) {
     var action = confirm("Are you sure you want to delete this note?");
-    if(action == true) {
-        deleteNote(noteId).then(()=> {
+    if (action == true) {
+        deleteNote(noteId).then(() => {
             updateNotesTable();
-        })
+        });
     }
 }
